@@ -23,3 +23,14 @@ go.work.sum
 
 # env file
 .env
+
+# Aws creds
+*.aws
+
+# Terraform
+*.tfvars
+*.lock.hcl
+*.tfstate
+*.tfstate.backup
+
+.idea

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  #postfix:
+  #  image: catatnight/postfix:latest
+  #  container_name: postfix
+  #  hostname: mail
+  #  domainname: impermanent.faith
+  #  ports:
+  #    - "9025:25"     # SMTP port
+  #  networks:
+  #    - mqtt-notifier
+  #  environment:
+  #    - maildomain=mail.impermanent.faith
+  #    - smtp_user=mqtt-bot:your_password  # Optional: For authenticated sending
+  #  #volumes:
+  #  #  - ./deploy/postfix:/etc/postfix
+  #  restart: always
+
+  mqtt-notifier:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #depends_on:
+    #  - postfix
+    networks:
+      - mqtt-notifier
+    environment:
+      - SMTP_SERVER=
+      - SMTP_FROM=
+      - SMTP_TO=
+      - SMTP_USER=
+      - SMTP_PASS=
+    restart: always
+
+networks:
+  mqtt-notifier:
+    driver: bridge
